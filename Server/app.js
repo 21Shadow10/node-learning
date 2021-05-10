@@ -12,7 +12,7 @@ app.listen(3000) ;
 //Send Responses - Index page
 app.get('/' , (req,res) => {
     // res.send('<p>Index Page</p>') ;
-    //res.sendFile('./views/index.html', { root: __dirname}) ;
+    //res.sendFile('./views/htmls/index.html', { root: __dirname}) ;
     const blogs = [
         {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
         {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
@@ -24,7 +24,7 @@ app.get('/' , (req,res) => {
 //About Page
 app.get('/about' , (req,res) => {
     // res.send('<p>About Page</p>') ;
-    //res.sendFile('./views/about.html', { root: __dirname}) ;
+    //res.sendFile('./views/htmls/about.html', { root: __dirname}) ;
     res.render('about', {title: 'About'}) ;
 }) ;
 
@@ -39,6 +39,6 @@ app.get('/blogs/create' , (req,res) => {
 
 //404 page
 app.use((req,res) => {
-    //res.status(404).sendFile('./views/404.html', { root: __dirname}) ;
+    //res.status(404).sendFile('./views/htmls/404.html', { root: __dirname}) ;
     res.status(404).render('404', {title: '404'});
 })
