@@ -32,6 +32,7 @@ app.use((req,res, next) =>{
 
 */
 app.use(express.static('public')) ;
+app.use(express.urlencoded( { extended: true })) ;
 app.use(morgan('dev')) ;
 
 /*//mangoose and mongo sandbox routes
@@ -85,7 +86,7 @@ app.get('/' , (req,res) => {
     res.redirect('/blogs') ;
 }) ;
 
-//Routes
+//Blogs Routes
 app.get('/blogs' ,(req,res) => {
     Blog.find().sort( {createdAt: -1 })
         .then((result) => {
@@ -95,6 +96,18 @@ app.get('/blogs' ,(req,res) => {
             console.log(err) ;
         })
 })
+
+app.post('/blogs' , (req,res) => {
+    const blog = new Blog(req.body) ;
+
+    blog.save()
+        .then((result) => {
+            res.redirect('/blogs')
+        })
+        .catch((err) => {
+            console.log(err) ;
+        })
+}) ;
 
 
 //About Page
